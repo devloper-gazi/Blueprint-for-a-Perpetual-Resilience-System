@@ -27,11 +27,11 @@
             background-color: #ff990033; /* Warm off-white */
             color: #383838;
         }
-        .nav-item {
-            @apply px-3 py-2 text-sm font-medium text-white rounded-md hover:bg-gray-700 transition-colors cursor-pointer;
+    .nav-item {
+        @apply px-3 py-2 text-sm font-medium text-white rounded-md hover:bg-gray-700 hover:text-white transition-colors cursor-pointer;
         }
-        .nav-item.active {
-            @apply bg-gray-700 text-white;
+    .nav-item.active {
+        @apply bg-gray-700 text-white hover:bg-gray-600 hover:text-white;
         }
         .content-section {
             display: none;
@@ -71,6 +71,10 @@
         .aisa-stage.active {
             @apply border-blue-800 bg-blue-50;
         }
+        .white{
+            color:white;
+            text:white;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -82,23 +86,23 @@
                     <h1 class="text-xl font-bold text-white">Resilience Blueprint</h1>
                 </div>
                 <div class="hidden md:block">
-                    <div id="nav-container" class="ml-10 flex items-baseline space-x-4">
-                        <button data-target="overview" class="nav-item active">Overview</button>
-                        <button data-target="power" class="nav-item">Perpetual Power</button>
-                        <button data-target="bastion" class="nav-item">The Bastion</button>
-                        <button data-target="sanctum" class="nav-item">The Sanctum</button>
-                        <button data-target="ai-core" class="nav-item">Intelligent Core</button>
-                        <button data-target="economics" class="nav-item">Economics</button>
+                    <div id="nav-container" class="ml-10 flex  items-baseline space-x-4">
+                        <button><a data-target="overview" class="nav-item active white">Overview</a></button>
+                        <button><a data-target="power" class="nav-item">Perpetual Power</a></button>
+                        <button><a data-target="bastion" class="nav-item">The Bastion</a></button>
+                        <button><a data-target="sanctum" class="nav-item">The Sanctum</a></button>
+                        <button><a data-target="ai-core" class="nav-item">Intelligent Core</a></button>
+                        <button><a data-target="economics" class="nav-item">Economics</a></button>
                     </div>
                 </div>
                  <div class="md:hidden">
                     <select id="mobile-nav" class="block w-full rounded-md bg-gray-800 text-white border-gray-600 shadow-sm focus:border-gray-400 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
-                        <option value="overview">Overview</option>
-                        <option value="power">Perpetual Power</option>
-                        <option value="bastion">The Bastion</option>
-                        <option value="sanctum">The Sanctum</option>
-                        <option value="ai-core">Intelligent Core</option>
-                        <option value="economics">Economics</option>
+                        <button><option value="overview">Overview</option></button>
+                        <button><option value="power">Perpetual Power</option></button>
+                        <button><option value="bastion">The Bastion</option></button>
+                        <button><option value="sanctum">The Sanctum</option></button>
+                        <button><option value="ai-core">Intelligent Core</option></button>
+                        <button><option value="economics">Economics</option></button>
                     </select>
                 </div>
             </div>
@@ -280,22 +284,22 @@
         document.addEventListener('DOMContentLoaded', function () {
             
             const contentSections = document.querySelectorAll('.content-section');
-            const navButtons = document.querySelectorAll('#nav-container button');
+            const navLinks = document.querySelectorAll('.nav-item');
             const mobileNav = document.getElementById('mobile-nav');
 
             function switchTab(targetId) {
                 contentSections.forEach(section => {
                     section.classList.remove('active');
                 });
-                navButtons.forEach(button => {
-                    button.classList.remove('active');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
                 });
 
                 const targetSection = document.getElementById(targetId);
-                const targetButton = document.querySelector(`button[data-target="${targetId}"]`);
+                const targetLink = document.querySelector(`.nav-item[data-target="${targetId}"]`);
                 
                 if (targetSection) targetSection.classList.add('active');
-                if (targetButton) targetButton.classList.add('active');
+                if (targetLink) targetLink.classList.add('active');
                 mobileNav.value = targetId;
 
                 // Lazy chart initialization
@@ -304,9 +308,8 @@
             }
 
             document.getElementById('nav-container').addEventListener('click', (e) => {
-                const button = e.target.closest('button');
-                if(button && button.hasAttribute('data-target')) {
-                    const targetId = button.getAttribute('data-target');
+                if(e.target.matches('.nav-item')) {
+                    const targetId = e.target.getAttribute('data-target');
                     switchTab(targetId);
                 }
             });
@@ -455,7 +458,7 @@
                 const stageEl = document.createElement('div');
                 stageEl.className = 'aisa-stage';
                 stageEl.dataset.stage = item.stage;
-                stageEl.innerHTML = `<h4 class="font-bold text-stone-800">Stage ${item.stage}: ${item.title}</h4>`;
+                stageEl.innerHTML = `<button><h4 class="font-bold text-stone-800">Stage ${item.stage}: ${item.title}</h4></button>`;
                 aisaNav.appendChild(stageEl);
             });
 
