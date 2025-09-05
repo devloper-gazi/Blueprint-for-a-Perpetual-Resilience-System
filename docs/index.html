@@ -27,14 +27,11 @@
             background-color: #ff990033; /* Warm off-white */
             color: #383838;
         }
-        .bg-stone-100\/80{
-            background-color: #000000;
-        }
         .nav-item {
-            @apply px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-stone-200 hover:text-gray-900 transition-colors cursor-pointer;
+            @apply px-3 py-2 text-sm font-medium text-white rounded-md hover:bg-gray-700 hover:text-white transition-colors cursor-pointer;
         }
         .nav-item.active {
-            @apply bg-stone-800 text-white hover:bg-stone-700;
+            @apply bg-white text-black hover:bg-gray-200 hover:text-black;
         }
         .content-section {
             display: none;
@@ -78,11 +75,11 @@
 </head>
 <body class="antialiased">
 
-    <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200">
+    <header class="bg-black backdrop-blur-md sticky top-0 z-50 border-b border-gray-700">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center  justify-between h-16">
                 <div class="flex-shrink-0">
-                    <h1 class="text-xl font-bold text-stone-800">Resilience Blueprint</h1>
+                    <h1 class="text-xl font-bold text-white">Resilience Blueprint</h1>
                 </div>
                 <div class="hidden md:block">
                     <div id="nav-container" class="ml-10 flex  items-baseline space-x-4">
@@ -95,7 +92,7 @@
                     </div>
                 </div>
                  <div class="md:hidden">
-                    <select id="mobile-nav" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <select id="mobile-nav" class="block w-full rounded-md bg-gray-800 text-white border-gray-600 shadow-sm focus:border-gray-400 focus:ring focus:ring-gray-500 focus:ring-opacity-50">
                         <button><option value="overview">Overview</option></button>
                         <button><option value="power">Perpetual Power</option></button>
                         <button><option value="bastion">The Bastion</option></button>
